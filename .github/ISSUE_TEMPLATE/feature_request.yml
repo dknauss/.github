@@ -1,0 +1,40 @@
+name: Feature request
+description: Propose an improvement for a repository that inherits these default templates.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when a repository does not provide its own feature-request form.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What need, gap, or friction are you trying to address?
+      placeholder: Describe the problem first.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What should the project do differently?
+      placeholder: Describe the requested capability or change.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      placeholder: Other approaches, workarounds, or reasons to defer.
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      placeholder: Links, examples, mockups, or related issues.
+    validations:
+      required: false

@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a defect in a repository that inherits these default templates.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template when a repository does not provide its own bug-report form.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is broken?
+      placeholder: Describe the bug clearly and directly.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: How can someone reproduce it?
+      placeholder: |
+        1. Go to ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: What should have happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include versions, platform details, and anything else relevant.
+      placeholder: Repository, branch, OS, runtime, browser, WordPress/PHP versions, etc.
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      placeholder: Logs, screenshots, links, or related issues.
+    validations:
+      required: false
