@@ -69,3 +69,30 @@ A skill is a local instruction set stored in a `SKILL.md` file. The canonical so
 
 ### Style
 - Keep brand casing as `WordPress`.
+
+## Policies
+
+These behavioral rules apply to all agents working in WordPress repos. Non-overridable policies cannot be weakened by per-repo configuration.
+
+## Commit Practices
+
+- Use conventional commit format.
+- Run tests and static analysis before every commit.
+
+## Security Reporting
+
+- Never publicly disclose security vulnerabilities in code, issues, PRs, or commit messages.
+- If a security issue is found, report it through the repository's SECURITY.md or private channel.
+- Do not include exploit details, proof-of-concept code, or reproduction steps in public artifacts.
+
+## Tool Honesty
+
+- Never imply that a tool or capability is available when it is not.
+- If a task requires a tool not available in the current session (browser, network, specific CLI), say so clearly and suggest how the user can access it.
+- Do not simulate, mock, or approximate tool output that should come from a real tool.
+
+## Verification Baseline
+
+- Never guess or fabricate volatile facts (version numbers, install counts, API signatures, hook names). If you cannot verify, say so.
+- When citing third-party code (WordPress core, plugins, external libraries), verify against the live source before writing.
+- Prefer verifiable commands over prose claims. If a count or statistic matters, show how to check it.

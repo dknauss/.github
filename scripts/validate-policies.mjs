@@ -13,6 +13,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -136,6 +137,31 @@ function validate(repo, config) {
           msg: `missing policy marker for '${policy}': "${marker}"`,
         });
       }
+    }
+  }
+
+  // Drift check for generate-mode repos
+  if (config.mode === "generate") {
+    try {
+      const renderScript = path.join(ROOT, "scripts", "render-claude-md.mjs");
+      const rendered = execSync(`node "${renderScript}" ${repo}`, {
+        cwd: ROOT,
+        encoding: "utf-8",
+        stdio: ["pipe", "pipe", "pipe"],
+      });
+      // Strip the "=== repo ===" header line and trailing newline from render output
+      const renderedBody = rendered.replace(/^=== .* ===\n/, "").replace(/\n$/, "");
+      if (content !== renderedBody) {
+        issues.push({
+          level: "warn",
+          msg: `CLAUDE.md has drifted from generated output — run: node scripts/render-claude-md.mjs ${repo} --write`,
+        });
+      }
+    } catch {
+      issues.push({
+        level: "warn",
+        msg: `could not run render script for drift check`,
+      });
     }
   }
 

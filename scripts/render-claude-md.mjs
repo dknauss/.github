@@ -151,7 +151,9 @@ function loadPolicy(name) {
     process.stderr.write(`Error: policy '${name}' not found at ${file}\n`);
     process.exit(1);
   }
-  return fs.readFileSync(file, "utf-8").trim();
+  // Strip YAML frontmatter if present
+  const content = fs.readFileSync(file, "utf-8").trim();
+  return content.replace(/^---\n[\s\S]*?\n---\n*/, "").trim();
 }
 
 // ---- Renderer ----

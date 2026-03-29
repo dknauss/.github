@@ -1,3 +1,9 @@
+---
+overridable: true
+agents-md: false
+description: Basic verification — check current-metrics.md before writing counts
+---
+
 ## Verification Requirements
 
 ### Internal architectural counts

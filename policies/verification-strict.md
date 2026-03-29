@@ -1,3 +1,9 @@
+---
+overridable: true
+agents-md: false
+description: Strict verification — external sources, llm-lies-log, pre-release audit
+---
+
 ## Verification Requirements
 
 LLM-generated content has a documented history of confabulation in this project.

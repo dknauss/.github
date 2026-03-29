@@ -1,3 +1,9 @@
+---
+overridable: false
+agents-md: false
+description: Claude-specific browser session handoff (not included in AGENTS.md — Claude-only)
+---
+
 <!-- claude-playwright-handoff -->
 ## Browser and Playwright handoff
 

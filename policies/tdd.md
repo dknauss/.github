@@ -1,3 +1,9 @@
+---
+overridable: true
+agents-md: false
+description: Test-driven development requirement for repos that mandate TDD
+---
+
 ## Test-Driven Development
 
 All new code must follow TDD:
