@@ -1,0 +1,8 @@
+# wp-sudo — validate-only (rich hand-maintained CLAUDE.md)
+repo: wp-sudo
+mode: validate
+policies:
+  - verification-strict
+  - tdd
+  - commit-practices
+  - playwright-handoff

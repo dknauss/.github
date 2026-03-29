@@ -1,0 +1,4 @@
+# Default config applied to all repos before repo-specific overrides.
+# Repos inherit these policies unless they explicitly override.
+policies:
+  - playwright-handoff

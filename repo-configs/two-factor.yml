@@ -1,0 +1,50 @@
+# two-factor — generate mode
+repo: two-factor
+mode: generate
+policies:
+  - commit-practices
+  - playwright-handoff
+
+overview: |
+  Two Factor is a WordPress plugin that enables two-factor authentication
+  using TOTP, FIDO U2F/WebAuthn, email, and backup verification codes.
+  This is a fork (dknauss/two-factor) of the official WordPress.org
+  Two Factor plugin.
+
+requirements:
+  wordpress: "6.8+"
+  php: "7.2+"
+
+commands:
+  - label: Install dev dependencies
+    cmd: composer install
+  - label: PHPCS (WPCS + VIP + PHPCompatibility)
+    cmd: composer lint
+  - label: PHP compatibility check (7.2+)
+    cmd: composer lint-compat
+  - label: PHPStan (with --memory-limit=1G)
+    cmd: composer lint-phpstan
+  - label: PHPUnit with coverage text output
+    cmd: composer test
+
+architecture: |
+  **Entry point:** `two-factor.php` — registers constants, loads providers and core class.
+
+  ### Core Classes
+
+  - **Two_Factor_Core** (`class-two-factor-core.php`) — Main class. Handles provider registration, login interception, user profile 2FA settings, revalidation flow, nonce verification, and session management.
+  - **Two_Factor_Compat** (`class-two-factor-compat.php`) — Compatibility shims for older WordPress versions.
+
+  ### Providers (in `providers/`)
+
+  Each provider extends `Two_Factor_Provider`:
+  - **Two_Factor_Totp** — Time-based one-time passwords (TOTP).
+  - **Two_Factor_FIDO_U2F** — FIDO U2F hardware keys.
+  - **Two_Factor_Backup_Codes** — One-time backup verification codes.
+  - **Two_Factor_Email** — Email-based verification codes.
+  - **Two_Factor_Dummy** — Test/development provider.
+
+testing: |
+  Integration tests in `tests/` use WordPress test suite (`WP_UnitTestCase`).
+  Test files follow the `class-two-factor-*.php` naming convention.
+  Requires one-time WP test suite setup.

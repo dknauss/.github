@@ -1,0 +1,7 @@
+# comment-popularity — validate-only (rich hand-maintained CLAUDE.md)
+repo: comment-popularity
+mode: validate
+policies:
+  - verification
+  - commit-practices
+  - playwright-handoff

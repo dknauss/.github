@@ -1,0 +1,7 @@
+# authorship — validate-only (rich hand-maintained CLAUDE.md)
+repo: authorship
+mode: validate
+policies:
+  - verification
+  - commit-practices
+  - playwright-handoff
