@@ -21,10 +21,20 @@ const ROOT = path.resolve(__dirname, "..");
 const POLICIES_DIR = path.join(ROOT, "policies");
 const CONFIGS_DIR = path.join(ROOT, "repo-configs");
 const WORKSPACE = path.resolve(ROOT, "..");
+const DEFAULTS_FILE = path.join(CONFIGS_DIR, "_defaults.yml");
 
 // Key phrases that MUST appear in CLAUDE.md for each policy.
 // These are the minimum markers — not the full text.
 const POLICY_MARKERS = {
+  "design-intent-review": [
+    "Before writing or substantially changing code",
+    "name the intended approach",
+    "If the implementation changed, explain why",
+  ],
+  "simplicity-first": [
+    "Is this the simplest solution?",
+    "If no code is the best code, say so explicitly",
+  ],
   "verification": [
     "current-metrics.md",
     "MUST",
@@ -47,6 +57,14 @@ const POLICY_MARKERS = {
     "TDD",
   ],
 };
+
+function mergeConfigs(defaults, config) {
+  const merged = { ...defaults, ...config };
+  const defaultPolicies = Array.isArray(defaults.policies) ? defaults.policies : [];
+  const repoPolicies = Array.isArray(config.policies) ? config.policies : [];
+  merged.policies = [...new Set([...defaultPolicies, ...repoPolicies])];
+  return merged;
+}
 
 // ---- YAML-lite parser (minimal, same subset as render script) ----
 
@@ -201,7 +219,10 @@ function main() {
       continue;
     }
 
-    const config = parseYaml(fs.readFileSync(configFile, "utf-8"));
+    const defaults = fs.existsSync(DEFAULTS_FILE)
+      ? parseYaml(fs.readFileSync(DEFAULTS_FILE, "utf-8"))
+      : {};
+    const config = mergeConfigs(defaults, parseYaml(fs.readFileSync(configFile, "utf-8")));
     const issues = validate(repo, config);
 
     const errors = issues.filter(i => i.level === "error");

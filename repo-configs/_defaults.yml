@@ -1,4 +1,14 @@
 # Default config applied to all repos before repo-specific overrides.
 # Repos inherit these policies unless they explicitly override.
 policies:
+  - design-intent-review
+  - simplicity-first
   - playwright-handoff
+
+# Default behavioral toggles for teaching/review-oriented agents.
+# Current render/validate flows do not read these directly yet, but they document
+# the intended defaults for future tooling and repo policy review.
+pre_code_explanation: true
+post_code_review: true
+simplicity_gate: true
+philosophy_review: optional

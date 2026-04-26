@@ -22,6 +22,7 @@ const ROOT = path.resolve(__dirname, "..");
 const POLICIES_DIR = path.join(ROOT, "policies");
 const CONFIGS_DIR = path.join(ROOT, "repo-configs");
 const WORKSPACE = path.resolve(ROOT, "..");
+const DEFAULTS_FILE = path.join(CONFIGS_DIR, "_defaults.yml");
 
 // ---- YAML-lite parser (handles the subset we use) ----
 
@@ -156,6 +157,14 @@ function loadPolicy(name) {
   return content.replace(/^---\n[\s\S]*?\n---\n*/, "").trim();
 }
 
+function mergeConfigs(defaults, config) {
+  const merged = { ...defaults, ...config };
+  const defaultPolicies = Array.isArray(defaults.policies) ? defaults.policies : [];
+  const repoPolicies = Array.isArray(config.policies) ? config.policies : [];
+  merged.policies = [...new Set([...defaultPolicies, ...repoPolicies])];
+  return merged;
+}
+
 // ---- Renderer ----
 
 function render(config) {
@@ -275,8 +284,11 @@ function main() {
       process.exit(1);
     }
 
+    const defaults = fs.existsSync(DEFAULTS_FILE)
+      ? parseYaml(fs.readFileSync(DEFAULTS_FILE, "utf-8"))
+      : {};
     const configText = fs.readFileSync(configFile, "utf-8");
-    const config = parseYaml(configText);
+    const config = mergeConfigs(defaults, parseYaml(configText));
 
     if (config.mode !== "generate") {
       process.stderr.write(`Skipping '${repo}' (mode: ${config.mode || "unknown"}, not generate)\n`);

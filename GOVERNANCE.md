@@ -110,6 +110,8 @@ Policies are behavioral requirements expressed as Markdown fragments with YAML f
 
 **Source of truth:** `.github/repo-configs/`
 
+`_defaults.yml` is merged first for every repo. Repo-specific config extends or overrides those defaults, while policy lists are combined.
+
 Each YAML config declares which policies a repo requires and whether its CLAUDE.md is generated or hand-maintained.
 
 **Two modes:**
