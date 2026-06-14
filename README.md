@@ -1,5 +1,5 @@
 # dknauss/.github
-[![License](https://img.shields.io/github/license/dknauss/.github)](LICENSE) [![Security Policy](https://img.shields.io/badge/security-policy-4c1)](SECURITY.md)
+[![License](https://img.shields.io/github/license/dknauss/.github)](LICENSE) [![Security Policy](https://img.shields.io/badge/security-policy-4c1)](SECURITY.md) [![Skills](https://img.shields.io/badge/skills-30-7c3aed.svg)](.github/skills/) [![AI Authorship](https://img.shields.io/badge/AI%20authorship-disclosed-8a63d2.svg)](docs/ai-authorship.md)
 
 
 Default community health files for repositories owned by `dknauss`.
