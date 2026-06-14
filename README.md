@@ -1,4 +1,6 @@
 # dknauss/.github
+[![License](https://img.shields.io/github/license/dknauss/.github)](LICENSE) [![Security Policy](https://img.shields.io/badge/security-policy-4c1)](SECURITY.md)
+
 
 Default community health files for repositories owned by `dknauss`.
 
