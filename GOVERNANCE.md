@@ -55,6 +55,12 @@ agent-skills/                     ← Canonical skill source (fork of WordPress/
 ├── eval/                         ← BDD test scenarios per skill
 └── dist/                         ← Multi-editor distribution (Claude, Codex, Cursor, VSCode)
 
+code-design-review-skills/        ← Canonical non-WordPress design-review skill source
+├── skills/
+│   ├── code-mentor/
+│   └── cs-philosophy-review/
+└── README.md                     ← Rationale + distribution model
+
 AGENTS.md                         ← Root-level copy (read by agents in this workspace)
 ```
 
@@ -62,21 +68,31 @@ AGENTS.md                         ← Root-level copy (read by agents in this wo
 
 ### 1. Skills (what agents can do)
 
-**Source of truth:** `agent-skills/skills/`
+**Source of truth:** `agent-skills/skills/` for shared WordPress skills.
 
 Skills are domain instructions stored in SKILL.md files. Each skill teaches an agent how to perform a specific WordPress task (block development, REST API, performance review, etc.).
+
+The design-review pair (`code-mentor`, `cs-philosophy-review`) is the deliberate exception: those skills live in `code-design-review-skills/` because they are cross-language, process-oriented, and not specific to WordPress execution work.
 
 **Key files:**
 - `agent-skills/skills/<name>/SKILL.md` — skill definition with YAML frontmatter
 - `agent-skills/shared/scripts/generate-agents-md.mjs` — generates AGENTS.md from skill inventory + policies
 
-**Workflow:** Edit skills in agent-skills → regenerate AGENTS.md → copy to workspace root.
+**Workflow:** Edit WordPress skills in agent-skills → regenerate AGENTS.md → copy to workspace root.
 
 ```bash
 cd agent-skills
 # Edit skills/wp-whatever/SKILL.md
 node shared/scripts/generate-agents-md.mjs --out=../.github/AGENTS.md
 cp ../.github/AGENTS.md ../AGENTS.md
+```
+
+For the design-review pair, the workflow is parallel:
+
+```bash
+cd code-design-review-skills
+# Edit skills/code-mentor/SKILL.md or skills/cs-philosophy-review/SKILL.md
+# Then mirror/sync into runtime consumers and regenerate AGENTS.md if descriptions changed
 ```
 
 ### 2. Policies (how agents must behave)

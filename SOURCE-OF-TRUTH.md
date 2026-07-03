@@ -65,6 +65,13 @@ This repo exists because these skills are broader than WordPress and broader tha
 - `/Users/danknauss/Developer/GitHub/code-design-review-skills/skills/code-mentor/SKILL.md`
 - `/Users/danknauss/Developer/GitHub/code-design-review-skills/skills/cs-philosophy-review/SKILL.md`
 
+**Distribution model:**
+
+- advertised through workspace `AGENTS.md`
+- mirrored into `.github/.github/skills/`
+- installed into runtime skill locations such as `~/.codex/skills/` and `~/.claude/skills/`
+- **not** authored in `agent-skills`
+
 ## Mirrors / operational copies
 
 ### 4. Workspace-level agent instructions
@@ -153,7 +160,7 @@ If the change is specifically about the mentoring/philosophy pair, edit:
 
 - `/Users/danknauss/Developer/GitHub/code-design-review-skills`
 
-Then mirror or sync into broader operational distribution as needed.
+Then mirror or sync into broader operational distribution as needed. Do not route these two skills back through `agent-skills` unless you intentionally decide to fold them into the WordPress skill set.
 
 ### Treat these as non-primary unless intentional
 
