@@ -114,6 +114,7 @@ Policies are behavioral requirements expressed as Markdown fragments with YAML f
 | `verification.md` | yes | no | Check current-metrics.md before writing counts |
 | `verification-strict.md` | yes | no | Full LLM verification: llm-lies-log, pre-release audit |
 | `tdd.md` | yes | no | Test-driven development requirement |
+| `wordpress-php-floor.md` | yes | no | WordPress plugins and themes require PHP 8.1+; declared floors and CI stay in sync |
 | `playwright-handoff.md` | no | no | Claude-specific browser session handoff |
 
 **Non-overridable policies** are the behavioral baseline every agent must follow. They appear in AGENTS.md (for all agents) and are validated in every repo's CLAUDE.md.
